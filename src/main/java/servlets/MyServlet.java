@@ -1,5 +1,6 @@
 package servlets;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +22,13 @@ public class MyServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
+        String varTextA = "Hell Word";
+        request.setAttribute("textA", varTextA);
+        String varTextB = "Its JST";
+        request.setAttribute("textB", varTextB);
 
-        out.println("Hello Word");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+        dispatcher.forward(request, response);
+
     }
 }
